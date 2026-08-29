@@ -11,4 +11,9 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 ENV ASPNETCORE_URLS=http://+:10000
 EXPOSE 10000
+
+# PARCHE CRÍTICO PARA RENDER: Desactivar recarga automática de archivos
+ENV DOTNET_USE_POLLING_FILE_WATCHER=1
+ENV ASPNETCORE_HOSTINGSTARTUPASSEMBLIES=
+
 ENTRYPOINT ["dotnet", "Evaluacion 2026-2.dll"]
