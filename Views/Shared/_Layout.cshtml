@@ -4,30 +4,35 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TecnoGas Hogar - Portal Interno</title>
+    <!-- CDN de Bootstrap directo en formato plano -->
     <link rel="stylesheet" href="https://jsdelivr.net">
 </head>
 <body class="bg-light">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 shadow-sm">
             <div class="container">
-                <a class="navbar-brand fw-bold" href="/">?? TecnoGas Hogar</a>
+                <a class="navbar-brand fw-bold" href="/">🔥 TecnoGas Hogar</a>
                 <div class="navbar-nav d-flex flex-row">
-                    <a class="nav-link text-white me-3" href="/Solicitud/Registrar">? Nueva Solicitud</a>
-                    <a class="nav-link text-white" href="/Solicitud">?? Ver Lista</a>
+                    <a class="nav-link text-white me-3" href="/Solicitud/Registrar">➕ Nueva Solicitud</a>
+                    <a class="nav-link text-white" href="/Solicitud">📋 Ver Lista</a>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+
+    <div class="container bg-white p-4 rounded shadow-sm">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
-    <footer class="border-top text-muted mt-5 py-3 bg-white text-center">
+
+    <footer class="border-top text-muted mt-5 py-3 text-center bg-white">
         <div class="container">
-            &copy; 2026 - TecnoGas Hogar - Evaluaci�n Continua
+            &copy; 2026 - TecnoGas Hogar - Evaluación Continua
         </div>
     </footer>
+
+    <!-- JS de Bootstrap en formato plano -->
     <script src="https://jsdelivr.net"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
