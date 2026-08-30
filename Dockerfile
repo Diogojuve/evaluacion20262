@@ -1,19 +1,28 @@
 # Etapa 1: Compilación y publicación
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build-env
+FROM ://microsoft.com AS build-env
 WORKDIR /app
+
+# Copiar archivos de proyecto y restaurar dependencias
 COPY *.csproj ./
 RUN dotnet restore
+
+# Copiar el resto del código y compilar la aplicación
 COPY . ./
 RUN dotnet publish -c Release -o out
+
 # Etapa 2: Entorno de ejecución
-FROM mcr.microsoft.com/dotnet/aspnet:10.0
+FROM ://microsoft.com
 WORKDIR /app
 COPY --from=build-env /app/out .
-ENV ASPNETCORE_URLS=http://+:10000
-EXPOSE 10000
 
-# PARCHE CRÍTICO PARA RENDER: Desactivar recarga automática de archivos
+# Configurar variables de entorno críticas para Render
+ENV ASPNETCORE_URLS=http://+:10000
 ENV DOTNET_USE_POLLING_FILE_WATCHER=1
 ENV ASPNETCORE_HOSTINGSTARTUPASSEMBLIES=
+EXPOSE 10000
+
+# Asegurar permisos de lectura y escritura para SQLite en Linux
+USER root
+RUN chmod -R 777 /app
 
 ENTRYPOINT ["dotnet", "Evaluacion 2026-2.dll"]
