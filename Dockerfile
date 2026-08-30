@@ -1,4 +1,3 @@
-# Etapa 1: Compilación y publicación
 FROM ://microsoft.com AS build-env
 WORKDIR /app
 
@@ -8,7 +7,6 @@ RUN dotnet restore
 COPY . ./
 RUN dotnet publish -c Release -o out
 
-# Etapa 2: Entorno de ejecución
 FROM ://microsoft.com
 WORKDIR /app
 COPY --from=build-env /app/out .
